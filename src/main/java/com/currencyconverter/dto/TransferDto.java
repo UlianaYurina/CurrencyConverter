@@ -1,4 +1,4 @@
-package com.currencyconverter.CurrencyConverter.dto;
+package com.currencyconverter.dto;
 
 import lombok.Data;
 
@@ -11,8 +11,5 @@ public class TransferDto {
     private CurrencyCode currencyCodeSender;
     private CurrencyCode currencyCodeReceiver;
     private Double transferAmountInCurrencySender;
-
-//    private Double transferResultInCurrencyReceiver;
-//    private Double transferFeeInCurrencySender;
 
 }

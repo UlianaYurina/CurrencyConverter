@@ -1,4 +1,4 @@
-package com.currencyconverter.CurrencyConverter.dto;
+package com.currencyconverter.dto;
 
 public enum CurrencyCode {
 

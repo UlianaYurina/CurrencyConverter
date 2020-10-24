@@ -1,4 +1,4 @@
-package com.currencyconverter.CurrencyConverter.dao;
+package com.currencyconverter.dao;
 
 
 //текущий курс валют
