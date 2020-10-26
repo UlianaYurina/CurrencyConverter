@@ -2,13 +2,20 @@ package com.currencyconverter.service;
 
 //http://www.cbr.ru/scripts/XML_daily.asp?
 
+
+
+//https://www.cbr-xml-daily.ru/daily_json.js
+
+import com.ctc.wstx.shaded.msv.org_jp_gr_xml.xml.UXML;
 import com.currencyconverter.dto.TransferDto;
 import com.currencyconverter.dto.cbr.ExchangeRateDto;
 import com.currencyconverter.dto.cbr.Valute;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.xml.XmlMapper;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -26,36 +33,41 @@ public class ConverterServiceImpl implements ConverterService {
     @Autowired
     private ObjectMapper objectMapper;
 
-    public String getCourses() {
-
+    @SneakyThrows
+    public String getExchangeRate() {
         ResponseEntity<String> exchangeRate =
                 restTemplate.getForEntity("http://www.cbr.ru/scripts/XML_daily.asp?", String.class, 1);
-        String xml = exchangeRate.getBody();
-        ExchangeRateDto dto = null;
-        try {
-            dto = objectMapper.readValue(xml, ExchangeRateDto.class);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+        String json = exchangeRate.getBody();
+        ExchangeRateDto dto = objectMapper.readValue(json, ExchangeRateDto.class);
 
-        Valute[] valutes = dto.getValCurs().getValute();
+//        System.out.println(exchangeRate.getBody());
 
-        String usdValue;
-        String eurValue;
 
-        for (Valute v : valutes) {
-            if (v.getCharCode().equals("USD")) {
-                usdValue = v.getValue();
-            }
-            if (v.getCharCode().equals("EUR")) {
-                eurValue = v.getValue();
-            }
-        }
-        System.out.println(Arrays.toString(dto.getValCurs().getValute()));
+//        ResponseEntity<String> exchangeRate =
+//                restTemplate.getForEntity("http://www.cbr.ru/scripts/XML_daily.asp?", String.class, 1);
+//        String xml = exchangeRate.getBody();
+//        ExchangeRateDto dto = null;
+//        try {
+//            dto = objectMapper.readValue(xml, ExchangeRateDto.class);
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
+//
+
         //достать курс валют по url
         return null; //вернуть json, причем оставить только рудли, и доллары
     }
 
+    public String getWeatherOnMars() {
+
+
+        return null;
+    }
+    public String getGoldPrice() {
+
+
+        return null;
+    }
     public String makeTransfer(TransferDto transferDto) {
 
 

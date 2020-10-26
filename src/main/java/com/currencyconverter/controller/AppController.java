@@ -16,6 +16,6 @@ public class AppController {
 
     @PostMapping("/exchange")
     public void getExchange (@RequestBody TransferDto transferDto) {
-        converterService.getCourses();
+        converterService.getExchangeRate();
     }
 }
