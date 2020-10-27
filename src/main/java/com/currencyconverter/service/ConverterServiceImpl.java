@@ -9,13 +9,10 @@ package com.currencyconverter.service;
 import com.ctc.wstx.shaded.msv.org_jp_gr_xml.xml.UXML;
 import com.currencyconverter.dto.TransferDto;
 import com.currencyconverter.dto.cbr.ExchangeRateDto;
-import com.currencyconverter.dto.cbr.Valute;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.xml.XmlMapper;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -33,14 +30,11 @@ public class ConverterServiceImpl implements ConverterService {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @SneakyThrows
     public String getExchangeRate() {
-        ResponseEntity<String> exchangeRate =
-                restTemplate.getForEntity("http://www.cbr.ru/scripts/XML_daily.asp?", String.class, 1);
-        String json = exchangeRate.getBody();
-        ExchangeRateDto dto = objectMapper.readValue(json, ExchangeRateDto.class);
+        ResponseEntity<ExchangeRateDto> exchangeRate =
+                restTemplate.getForEntity("https://www.cbr-xml-daily.ru/daily_json.js", ExchangeRateDto.class);
 
-//        System.out.println(exchangeRate.getBody());
+//        System.out.println(exchangeRate.toString());
 
 
 //        ResponseEntity<String> exchangeRate =
