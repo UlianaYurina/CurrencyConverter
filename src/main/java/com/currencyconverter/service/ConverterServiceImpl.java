@@ -6,22 +6,21 @@ package com.currencyconverter.service;
 
 //https://www.cbr-xml-daily.ru/daily_json.js
 
-import com.ctc.wstx.shaded.msv.org_jp_gr_xml.xml.UXML;
 import com.currencyconverter.dto.TransferDto;
 import com.currencyconverter.dto.cbr.ExchangeRateDto;
+import com.currencyconverter.dto.earth.weather.WeatherDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.xml.XmlMapper;
-import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.Arrays;
 
 //конвертация по курсу из валюты отправителяв валюту получателя
 
 @Service
+@Slf4j
 public class ConverterServiceImpl implements ConverterService {
 
 
@@ -29,33 +28,29 @@ public class ConverterServiceImpl implements ConverterService {
     private RestTemplate restTemplate;
     @Autowired
     private ObjectMapper objectMapper;
+    @Autowired
+    private MarsWeatherService marsWeatherService;
 
-    public String getExchangeRate() {
+    public String getExchangeRate(TransferDto transferDto) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity entity = new HttpEntity(httpHeaders);
+
         ResponseEntity<ExchangeRateDto> exchangeRate =
-                restTemplate.getForEntity("https://www.cbr-xml-daily.ru/daily_json.js", ExchangeRateDto.class);
+                restTemplate.exchange("https://www.cbr-xml-daily.ru/daily_json.js", HttpMethod.GET, entity, ExchangeRateDto.class, 1);
 
-//        System.out.println(exchangeRate.toString());
-
-
-//        ResponseEntity<String> exchangeRate =
-//                restTemplate.getForEntity("http://www.cbr.ru/scripts/XML_daily.asp?", String.class, 1);
-//        String xml = exchangeRate.getBody();
-//        ExchangeRateDto dto = null;
-//        try {
-//            dto = objectMapper.readValue(xml, ExchangeRateDto.class);
-//        } catch (JsonProcessingException e) {
-//            e.printStackTrace();
-//        }
-//
-
-        //достать курс валют по url
-        return null; //вернуть json, причем оставить только рудли, и доллары
+        ExchangeRateDto rateBody = exchangeRate.getBody();
+        return String.valueOf(rateBody != null ? rateBody.getValute().getEUR().getValue() : "null");
     }
 
-    public String getWeatherOnMars() {
-
-
-        return null;
+    public double getWeatherOnMars(String sol) {
+        double marsTemperature = 0.0;
+        try {
+           marsTemperature = marsWeatherService.getSolTemperature(sol);
+        } catch (JSONException e) {
+            log.error(e.getLocalizedMessage());
+        }
+        return marsTemperature;
     }
     public String getGoldPrice() {
 

@@ -1,5 +1,5 @@
 
-package com.currencyconverter.dto.cbr;
+package com.currencyconverter.dto.earth.weather;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,49 +12,36 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "GBP",
-    "USD",
-    "EUR"
+    "lon",
+    "lat"
 })
-public class Valute {
+public class Coord {
 
-    @JsonProperty("GBP")
-    private GBP gBP;
-    @JsonProperty("USD")
-    private USD uSD;
-    @JsonProperty("EUR")
-    private EUR eUR;
+    @JsonProperty("lon")
+    private Double lon;
+    @JsonProperty("lat")
+    private Double lat;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("GBP")
-    public GBP getGBP() {
-        return gBP;
+    @JsonProperty("lon")
+    public Double getLon() {
+        return lon;
     }
 
-    @JsonProperty("GBP")
-    public void setGBP(GBP gBP) {
-        this.gBP = gBP;
+    @JsonProperty("lon")
+    public void setLon(Double lon) {
+        this.lon = lon;
     }
 
-    @JsonProperty("USD")
-    public USD getUSD() {
-        return uSD;
+    @JsonProperty("lat")
+    public Double getLat() {
+        return lat;
     }
 
-    @JsonProperty("USD")
-    public void setUSD(USD uSD) {
-        this.uSD = uSD;
-    }
-
-    @JsonProperty("EUR")
-    public EUR getEUR() {
-        return eUR;
-    }
-
-    @JsonProperty("EUR")
-    public void setEUR(EUR eUR) {
-        this.eUR = eUR;
+    @JsonProperty("lat")
+    public void setLat(Double lat) {
+        this.lat = lat;
     }
 
     @JsonAnyGetter
