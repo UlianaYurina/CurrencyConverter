@@ -1,14 +1,7 @@
 package com.currencyconverter.service;
 
-//http://www.cbr.ru/scripts/XML_daily.asp?
-
-
-
-//https://www.cbr-xml-daily.ru/daily_json.js
-
 import com.currencyconverter.dto.TransferDto;
 import com.currencyconverter.dto.cbr.ExchangeRateDto;
-import com.currencyconverter.dto.earth.weather.WeatherDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,14 +45,5 @@ public class ConverterServiceImpl implements ConverterService {
         }
         return marsTemperature;
     }
-    public String getGoldPrice() {
 
-
-        return null;
-    }
-    public String makeTransfer(TransferDto transferDto) {
-
-
-        return null;
-    }
 }
