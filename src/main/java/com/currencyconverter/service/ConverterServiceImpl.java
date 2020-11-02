@@ -1,5 +1,6 @@
 package com.currencyconverter.service;
 
+import com.currencyconverter.dto.CurrencyCode;
 import com.currencyconverter.dto.TransferDto;
 import com.currencyconverter.dto.cbr.ExchangeRateDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,16 +25,29 @@ public class ConverterServiceImpl implements ConverterService {
     @Autowired
     private MarsWeatherService marsWeatherService;
 
-    public String getExchangeRate(TransferDto transferDto) {
+    public Double getExchangeRate(TransferDto transferDto) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity entity = new HttpEntity(httpHeaders);
 
         ResponseEntity<ExchangeRateDto> exchangeRate =
-                restTemplate.exchange("https://www.cbr-xml-daily.ru/daily_json.js", HttpMethod.GET, entity, ExchangeRateDto.class, 1);
+                restTemplate.exchange("https://www.cbr-xml-daily.ru/daily_json.js",
+                        HttpMethod.GET, entity, ExchangeRateDto.class, 1);
+
 
         ExchangeRateDto rateBody = exchangeRate.getBody();
-        return String.valueOf(rateBody != null ? rateBody.getValute().getEUR().getValue() : "null");
+
+        if (transferDto.getCurrencyCodeSender().equals(CurrencyCode.EUR)) {
+            return (rateBody.getValute().getEUR().getValue());
+        }
+        if (transferDto.getCurrencyCodeSender().equals(CurrencyCode.USD)) {
+            return (rateBody.getValute().getUSD().getValue());
+        }
+        if (transferDto.getCurrencyCodeSender().equals(CurrencyCode.GBP)) {
+            return (rateBody.getValute().getGBP().getValue());
+        }
+
+        return 0.0;
     }
 
     public double getWeatherOnMars(String sol) {

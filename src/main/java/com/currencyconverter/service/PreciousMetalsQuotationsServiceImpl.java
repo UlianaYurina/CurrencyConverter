@@ -1,16 +1,21 @@
 package com.currencyconverter.service;
 
-import com.fasterxml.jackson.xml.XmlMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.Date;
+
+
 
 @Service
 public class PreciousMetalsQuotationsServiceImpl implements PreciousMetalsQuotationsService {
 
-    XmlMapper xmlMapper = new XmlMapper();
+    @Autowired
+    private RestTemplate restTemplate;
 
-    public String getMetalsPrice(Date date) {
+    public String getMetalsPrice() {
+
+        //"http://www.cbr.ru/scripts/xml_metall.asp?date_req1=20/10/2020&date_req2=01/11/2020",
 
 
         return null;

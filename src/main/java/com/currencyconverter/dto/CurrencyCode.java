@@ -4,7 +4,7 @@ public enum CurrencyCode {
 
     EUR("Euro Member Countries"),
     MAR("Martian Ruble"),
-    GBR("United Kingdom Pound"),
+    GBP("United Kingdom Pound"),
     USD("United States Dollar");
 
     private final String description;
