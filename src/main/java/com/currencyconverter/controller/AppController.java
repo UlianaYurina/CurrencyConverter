@@ -46,8 +46,8 @@ public class AppController {
     }
 
     @GetMapping("/goldPrice")
-    public String getGoldPrice(@RequestParam(value = "date", defaultValue = "") Date date) {
-        return preciousMetalsQuotationsService.getMetalsPrice(date);
+    public String getGoldPrice(@RequestParam(value = "date", defaultValue = "") String date) {
+        return preciousMetalsQuotationsService.getMetalsPrice();
     }
 
 
