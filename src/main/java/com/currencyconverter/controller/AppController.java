@@ -46,7 +46,7 @@ public class AppController {
         return earthWeatherService.getCurrentWeather(city);
     }
 
-    @GetMapping("/goldPrice")
+    @PostMapping("/goldPrice")
     public String getGoldPrice() {
         return preciousMetalsQuotationsService.getMetalsPrice();
     }
