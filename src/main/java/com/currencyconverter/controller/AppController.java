@@ -9,6 +9,7 @@ import com.currencyconverter.service.MarsWeatherService;
 import com.currencyconverter.service.PreciousMetalsQuotationsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -30,8 +31,8 @@ public class AppController {
     @Autowired
     private  PreciousMetalsQuotationsService preciousMetalsQuotationsService;
 
-    @PostMapping("/exchangeRate")
-    public String getExchange(@RequestBody TransferDto transferDto) {
+    @PostMapping(value = "/exchangeRate")
+    public Double getExchange(@RequestBody TransferDto transferDto) {
         return converterService.getExchangeRate(transferDto);
     }
 
@@ -45,8 +46,8 @@ public class AppController {
         return earthWeatherService.getCurrentWeather(city);
     }
 
-    @GetMapping("/goldPrice")
-    public String getGoldPrice(@RequestParam(value = "date", defaultValue = "") String date) {
+    @PostMapping("/goldPrice")
+    public String getGoldPrice() {
         return preciousMetalsQuotationsService.getMetalsPrice();
     }
 
