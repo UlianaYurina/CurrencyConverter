@@ -1,13 +1,23 @@
 package com.currencyconverter.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CreationNewCurrencyServiceImpl implements  CreationNewCurrencyService {
 
-    public String getNewCurrency() {
+
+    @Autowired
+    private EarthWeatherServiceImpl earthWeatherService;
+
+    @Autowired
+    private PreciousMetalsQuotationsServiceImpl preciousMetalsQuotationsService;
 
 
-        //вызов других сервисов для получения курса, погода и др
-        return null;
+    public Double getNewCurrency(String city) { //x RUB -- 1 MAR
+
+        return (preciousMetalsQuotationsService.getMetalsPrice() /
+                earthWeatherService.getCurrentWeather(city).getMain().getTemp());
     }
 
 }

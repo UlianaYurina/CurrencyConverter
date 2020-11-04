@@ -1,5 +1,15 @@
-package com.currencyconverter.dto.cbrPreciousMetals;
+package com.currencyconverter.dto.cbrPreciousMetalsXml;
 
+import javax.xml.bind.annotation.*;
+
+@XmlRootElement(name = "metall")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "", propOrder = {
+        "name",
+        "FromDate",
+        "ToDate"
+//        "Record"
+})
 public class Metall {
 
     private String name;
@@ -8,6 +18,7 @@ public class Metall {
 
     private String ToDate;
 
+    @XmlElement(name="Record")
     private Record[] Record;
 
     public String getName ()

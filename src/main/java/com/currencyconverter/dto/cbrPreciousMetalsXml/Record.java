@@ -1,9 +1,23 @@
-package com.currencyconverter.dto.cbrPreciousMetals;
+package com.currencyconverter.dto.cbrPreciousMetalsXml;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "", propOrder = {
+//        "Sell",
+//        "Buy",
+        "Code",
+        "Date"
+})
 public class Record {
 
+        @XmlElement(name = "Sell")
         private String Sell;
 
+        @XmlElement(name = "Buy")
         private String Buy;
 
         private String Code;

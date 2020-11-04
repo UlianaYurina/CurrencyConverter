@@ -1,4 +1,5 @@
-package com.currencyconverter.dto.cbrPreciousMetals;
+package com.currencyconverter.dto.cbrPreciousMetalsXml;
+
 
 public class MetalsQuotations {
     private Metall Metall;

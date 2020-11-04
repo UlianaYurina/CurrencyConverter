@@ -3,10 +3,7 @@ package com.currencyconverter.controller;
 import com.currencyconverter.dto.TransferDto;
 import com.currencyconverter.dto.earth.weather.WeatherDto;
 import com.currencyconverter.dto.mars.SolTemperature;
-import com.currencyconverter.service.ConverterService;
-import com.currencyconverter.service.EarthWeatherServiceImpl;
-import com.currencyconverter.service.MarsWeatherService;
-import com.currencyconverter.service.PreciousMetalsQuotationsService;
+import com.currencyconverter.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.http.MediaType;
@@ -31,6 +28,9 @@ public class AppController {
     @Autowired
     private  PreciousMetalsQuotationsService preciousMetalsQuotationsService;
 
+    @Autowired
+    private CreationNewCurrencyService creationNewCurrencyService;
+
     @PostMapping(value = "/exchangeRate")
     public Double getExchange(@RequestBody TransferDto transferDto) {
         return converterService.getExchangeRate(transferDto);
@@ -47,9 +47,16 @@ public class AppController {
     }
 
     @PostMapping("/goldPrice")
-    public String getGoldPrice() {
+    public Double getGoldPrice() {
         return preciousMetalsQuotationsService.getMetalsPrice();
     }
+
+    @GetMapping("/newCurrency")
+    public Double getNewCurrency(@RequestParam(value = "city", defaultValue = "") String city) {
+        return creationNewCurrencyService.getNewCurrency(city);
+    }
+
+
 
 
 

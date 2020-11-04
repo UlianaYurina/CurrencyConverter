@@ -1,12 +1,10 @@
 package com.currencyconverter.service;
 
-import com.currencyconverter.dto.cbrPreciousMetals.MetalsQuotations;
-import com.currencyconverter.dto.earth.weather.WeatherDto;
+import com.currencyconverter.dto.CurrencyCode;
+import com.currencyconverter.dto.cbr.ExchangeRateDto;
+import com.currencyconverter.dto.cbrPreciousMetalsJson.PrecForMet;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -14,6 +12,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+//https://metals-api.com/api/latest?access_key=4jzakw1p8152zn1eu3njcfb94mv80ed24q0d0ttuemrbe92cy0fo5498d1fm
 
 @Service
 public class PreciousMetalsQuotationsServiceImpl implements PreciousMetalsQuotationsService {
@@ -21,29 +20,38 @@ public class PreciousMetalsQuotationsServiceImpl implements PreciousMetalsQuotat
     @Autowired
     private RestTemplate restTemplate;
 
-    public String getMetalsPrice() {
-        Date dateTo = new Date();
-        Date dateFrom = new Date(dateTo.getTime() - 24 * 3600 * 1000);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String dateToStr = dateFormat.format(dateTo);
-        String dateFromStr = dateFormat.format(dateFrom);
+    public Double getMetalsPrice() {
 
-        //"http://www.cbr.ru/scripts/xml_metall.asp?date_req1=20/10/2020&date_req2=01/11/2020",
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity entity = new HttpEntity(httpHeaders);
 
-        UriComponentsBuilder metPriceBuild =
-                UriComponentsBuilder
-                        .fromUriString("http://www.cbr.ru/scripts/xml_metall.asp")
-                        .queryParam("date_req1", dateFromStr)
-                        .queryParam("date_req2", dateToStr);
-
-        ResponseEntity<String> w = restTemplate
-                .getForEntity("http://www.cbr.ru/scripts/xml_metall.asp?date_req1=20/10/2020&date_req2=01/11/2020",
-                        String.class);
-        System.out.println(w);
+        ResponseEntity<PrecForMet> exchangeRateForMet =
+                restTemplate.exchange("https://metals-api.com/api/latest?" +
+                                "access_key=4jzakw1p8152zn1eu3njcfb94mv80ed24q0d0ttuemrbe92cy0fo5498d1fm",
+                        HttpMethod.GET, entity, PrecForMet.class, 1);
 
 
+        PrecForMet rateBody = exchangeRateForMet.getBody();
+        //try catch
+        double rateGoldRubForGramm = 1 / (rateBody.getRates().getXAU() * 31.1034768) * rateBody.getRates().getRUB();
+
+        return rateGoldRubForGramm;
+
+//        Date dateTo = new Date();
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//        String dateToStr = dateFormat.format(dateTo);
+//
+//        //"http://www.cbr.ru/scripts/xml_metall.asp?date_req1=20/10/2020&date_req2=01/11/2020",
+//
+//        String metPriceBuild =
+//                UriComponentsBuilder
+//                        .fromUriString("http://www.cbr.ru/scripts/xml_metall.asp")
+//                        .queryParam("date_req1", dateToStr)
+//                        .queryParam("date_req2", dateToStr).toUriString();
+//
 
 
-        return null;
+
     }
 }

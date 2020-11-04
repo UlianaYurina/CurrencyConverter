@@ -1,5 +1,7 @@
 package com.currencyconverter.service;
 
+import com.currencyconverter.dto.TransferDto;
+
 public interface CreationNewCurrencyService {
-    String getNewCurrency();
+    Double getNewCurrency(String city);
 }
