@@ -1,15 +1,7 @@
 package com.currencyconverter.facade;
 
+import com.currencyconverter.dto.TransferDto;
 
-import com.currencyconverter.service.ConverterServiceImpl;
-
-public class TransferFacade {
-    private ConverterServiceImpl conServ;
-
-    public void take() {
-
-    }
-
-
-
+public interface TransferFacade {
+    TransferDto makeExchange(TransferDto transferDto, String city);
 }

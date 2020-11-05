@@ -3,6 +3,7 @@ package com.currencyconverter.controller;
 import com.currencyconverter.dto.TransferDto;
 import com.currencyconverter.dto.earth.weather.WeatherDto;
 import com.currencyconverter.dto.mars.SolTemperature;
+import com.currencyconverter.facade.TransferFacade;
 import com.currencyconverter.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
@@ -31,9 +32,13 @@ public class AppController {
     @Autowired
     private CreationNewCurrencyService creationNewCurrencyService;
 
+    @Autowired
+    private TransferFacade transferFacade;
+
     @PostMapping(value = "/exchangeRate")
-    public Double getExchange(@RequestBody TransferDto transferDto) {
-        return converterService.getExchangeRate(transferDto);
+    public TransferDto getExchange(@RequestBody TransferDto transferDto,
+                                   @RequestParam(value = "city", defaultValue = "") String city) {
+        return converterService.getExchangeRate(transferDto, city);
     }
 
     @GetMapping("/mars/temperature")
@@ -54,6 +59,12 @@ public class AppController {
     @GetMapping("/newCurrency")
     public Double getNewCurrency(@RequestParam(value = "city", defaultValue = "") String city) {
         return creationNewCurrencyService.getNewCurrency(city);
+    }
+
+    @PostMapping("/TransferFacade")
+    public TransferDto makeTransfer(@RequestBody TransferDto transferDto,
+                                    @RequestParam(value = "city", defaultValue = "") String city) {
+        return transferFacade.makeExchange(transferDto, city);
     }
 
 

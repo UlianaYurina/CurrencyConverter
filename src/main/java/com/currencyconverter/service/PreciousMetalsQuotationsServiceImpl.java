@@ -1,16 +1,10 @@
 package com.currencyconverter.service;
 
-import com.currencyconverter.dto.CurrencyCode;
-import com.currencyconverter.dto.cbr.ExchangeRateDto;
 import com.currencyconverter.dto.cbrPreciousMetalsJson.PrecForMet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 //https://metals-api.com/api/latest?access_key=4jzakw1p8152zn1eu3njcfb94mv80ed24q0d0ttuemrbe92cy0fo5498d1fm
 

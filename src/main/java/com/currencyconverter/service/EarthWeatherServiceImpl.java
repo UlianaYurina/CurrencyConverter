@@ -35,10 +35,9 @@ public class EarthWeatherServiceImpl implements EarthWeatherService {
 
         ResponseEntity<WeatherDto> weatherDtoResponseEntity =
                 restTemplate.exchange(accuWeather.toUriString(), HttpMethod.GET, entity, WeatherDto.class, 1);
-        //System.out.println(weatherDtoResponseEntity.getBody().getMain().getTemp());
         WeatherDto body = weatherDtoResponseEntity.getBody();
 
-        return weatherDtoResponseEntity.getBody();
+        return body;
 
     }
 
