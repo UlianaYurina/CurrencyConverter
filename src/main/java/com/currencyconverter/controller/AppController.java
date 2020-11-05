@@ -7,10 +7,7 @@ import com.currencyconverter.facade.TransferFacade;
 import com.currencyconverter.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
 
 
 //http://www.cbr.ru/scripts/xml_metall.asp?date_req1=20/10/2020&date_req2=01/11/2020
@@ -53,7 +50,7 @@ public class AppController {
 
     @PostMapping("/goldPrice")
     public Double getGoldPrice() {
-        return preciousMetalsQuotationsService.getMetalsPrice();
+        return preciousMetalsQuotationsService.getGoldPriceInRub();
     }
 
     @GetMapping("/newCurrency")
