@@ -16,15 +16,16 @@ public class CreationNewCurrencyServiceImpl implements  CreationNewCurrencyServi
     @Autowired
     private PreciousMetalsQuotationsServiceImpl preciousMetalsQuotationsService;
 
-    public MAR getNewCurrency(String city) { // 1 MAR -- x RUB
+    public Double getNewCurrency(String city) { // 1 MAR -- x RUB
         MAR mar = new MAR();
         mar.setCharCode(CurrencyCode.MAR);
         mar.setSell_calc(preciousMetalsQuotationsService.getGoldPriceInRub() /
                 (5.5 * earthWeatherService.getCurrentWeather(city).getMain().getTemp()));
         mar.setBuy_calc(mar.getSell_calc()*0.9);
         mar.setDate(new Date());
+        System.out.println(mar);
 
-        return mar;
+        return mar.getBuy_calc();
     }
 
 }

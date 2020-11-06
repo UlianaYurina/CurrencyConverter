@@ -21,7 +21,7 @@ public class TransferFacadeImpl implements TransferFacade {
     @Autowired
     private TransferFeeInCurrencySender transferFeeInCurrencySender;
 
-    public MAR createMarCurrency(String city) {
+    public Double createMarCurrency(String city) {
         return creationNewCurrencyService.getNewCurrency(city);
     }
 

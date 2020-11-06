@@ -52,7 +52,7 @@ public class ConverterServiceImpl implements ConverterService {
             priceInCurSenderFor1Rub = rateBody.getValute().getGBP().getValue();
         }
         if (transferDto.getCurrencyCodeSender().equals(CurrencyCode.MAR)) {
-            priceInCurSenderFor1Rub = creationNewCurrencyService.getNewCurrency(city).getBuy_calc();
+            priceInCurSenderFor1Rub = creationNewCurrencyService.getNewCurrency(city);
         }
 
         if (transferDto.getCurrencyCodeReceiver().equals(CurrencyCode.EUR)) {
@@ -65,7 +65,7 @@ public class ConverterServiceImpl implements ConverterService {
             priceInCurReceiverFor1Rub = rateBody.getValute().getGBP().getValue();
         }
         if (transferDto.getCurrencyCodeReceiver().equals(CurrencyCode.MAR)) {
-            priceInCurReceiverFor1Rub = creationNewCurrencyService.getNewCurrency(city).getBuy_calc();
+            priceInCurReceiverFor1Rub = creationNewCurrencyService.getNewCurrency(city);
         }
 
 
@@ -76,12 +76,13 @@ public class ConverterServiceImpl implements ConverterService {
         transferResult.setTransferAmountInCurrencySender(transferDto.getTransferAmountInCurrencySender());
         transferResult.setTransferAmountInCurrencyReceiver(priceInCurSenderFor1Rub / priceInCurReceiverFor1Rub
                                                             * transferDto.getTransferAmountInCurrencySender());
-        transferFeeInCurrencySender.getFeeInCurSender(transferDto.getCurrencyCodeSender(), city);
+        transferResult.setTransferFeeInCurrencySender(transferFeeInCurrencySender
+                .getFeeInCurSender(transferDto.getCurrencyCodeSender(), city));
 
         return transferResult;
     }
 
-    public Double getRateForSender(CurrencyCode codeSender, String city) {
+    public Double getRateForSender(CurrencyCode currencyCodeSender, String city) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity entity = new HttpEntity(httpHeaders);
@@ -92,19 +93,19 @@ public class ConverterServiceImpl implements ConverterService {
 
         ExchangeRateDto rateBody = exchangeRate.getBody();
         double priceInCurSenderFor1Rub = 0.0;
-        double priceInCurReceiverFor1Rub = creationNewCurrencyService.getNewCurrency(city).getSell_calc();
+        double priceInCurMarFor1Rub = 1/creationNewCurrencyService.getNewCurrency(city);
 
-        if (codeSender.equals(CurrencyCode.EUR)) {
-            priceInCurSenderFor1Rub = rateBody.getValute().getEUR().getValue();
+        if (currencyCodeSender.equals(CurrencyCode.EUR)) {
+            priceInCurSenderFor1Rub = 1/rateBody.getValute().getEUR().getValue();
         }
-        if (codeSender.equals(CurrencyCode.USD)) {
-            priceInCurSenderFor1Rub = rateBody.getValute().getUSD().getValue();
+        if (currencyCodeSender.equals(CurrencyCode.USD)) {
+            priceInCurSenderFor1Rub = 1/rateBody.getValute().getUSD().getValue();
         }
-        if (codeSender.equals(CurrencyCode.GBP)) {
-            priceInCurSenderFor1Rub = rateBody.getValute().getGBP().getValue();
+        if (currencyCodeSender.equals(CurrencyCode.GBP)) {
+            priceInCurSenderFor1Rub = 1/rateBody.getValute().getGBP().getValue();
         }
 
-        return priceInCurSenderFor1Rub / priceInCurReceiverFor1Rub;
+        return priceInCurSenderFor1Rub / priceInCurMarFor1Rub;
     }
 
 

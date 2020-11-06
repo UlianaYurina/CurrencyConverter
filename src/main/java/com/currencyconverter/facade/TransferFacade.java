@@ -6,6 +6,6 @@ import com.currencyconverter.dto.cbr.MAR;
 
 public interface TransferFacade {
 
-    MAR createMarCurrency(String city);
+    Double createMarCurrency(String city);
     TransferResult makeExchange(TransferDto transferDto, String city);
 }

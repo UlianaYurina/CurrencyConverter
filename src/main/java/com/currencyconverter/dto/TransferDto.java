@@ -10,6 +10,9 @@ public class TransferDto {
 
     private CurrencyCode currencyCodeSender;
     private CurrencyCode currencyCodeReceiver;
+    private Double transferAmountInCurrencySender;
+
+
 
     public CurrencyCode getCurrencyCodeSender() {
         return currencyCodeSender;
@@ -35,5 +38,5 @@ public class TransferDto {
         this.transferAmountInCurrencySender = transferAmountInCurrencySender;
     }
 
-    private Double transferAmountInCurrencySender;
+
 }

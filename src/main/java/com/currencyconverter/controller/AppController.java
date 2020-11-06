@@ -1,5 +1,6 @@
 package com.currencyconverter.controller;
 
+import com.currencyconverter.dto.CurrencyCode;
 import com.currencyconverter.dto.TransferDto;
 import com.currencyconverter.dto.TransferResult;
 import com.currencyconverter.dto.cbr.MAR;
@@ -32,6 +33,9 @@ public class AppController {
     private CreationNewCurrencyService creationNewCurrencyService;
 
     @Autowired
+    private TransferFeeInCurrencySender transferFeeInCurrencySender;
+
+    @Autowired
     private TransferFacade transferFacade;
 
     @PostMapping(value = "/exchangeRate")
@@ -58,15 +62,20 @@ public class AppController {
     }
 
     @GetMapping("/newCurrency")
-    public MAR getNewCurrency(@RequestParam(value = "city", defaultValue = "") String city) {
+    public Double getNewCurrency(@RequestParam(value = "city", defaultValue = "") String city) {
         return creationNewCurrencyService.getNewCurrency(city);
     }
 
-    @PostMapping("/TransferFacadeExchange")
+    @PostMapping("/transferFacadeExchange")
     public TransferResult makeTransfer(@RequestBody TransferDto transferDto,
                                     @RequestParam(value = "city", defaultValue = "") String city) {
         return transferFacade.makeExchange(transferDto, city);
     }
+//    @PostMapping("/transferFee")
+//    public Double getFee(@RequestParam(value = "codeSender", defaultValue = "") CurrencyCode codeSender,
+//                         @RequestParam(value = "city", defaultValue = "") String city) {
+//        return transferFeeInCurrencySender.getFeeInCurSender(codeSender, city);
+//    }
 
 
 
