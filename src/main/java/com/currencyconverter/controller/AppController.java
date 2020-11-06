@@ -1,6 +1,8 @@
 package com.currencyconverter.controller;
 
 import com.currencyconverter.dto.TransferDto;
+import com.currencyconverter.dto.TransferResult;
+import com.currencyconverter.dto.cbr.MAR;
 import com.currencyconverter.dto.earth.weather.WeatherDto;
 import com.currencyconverter.dto.mars.SolTemperature;
 import com.currencyconverter.facade.TransferFacade;
@@ -33,18 +35,20 @@ public class AppController {
     private TransferFacade transferFacade;
 
     @PostMapping(value = "/exchangeRate")
-    public TransferDto getExchange(@RequestBody TransferDto transferDto,
-                                   @RequestParam(value = "city", defaultValue = "") String city) {
+    public TransferResult getExchange(@RequestBody TransferDto transferDto,
+                                      @RequestParam(value = "city", defaultValue = "") String city) {
         return converterService.getExchangeRate(transferDto, city);
     }
 
     @GetMapping("/mars/temperature")
-    public SolTemperature getMarsTemperature(@RequestParam(value = "sol", defaultValue = "") String sol) throws JSONException {
+    public SolTemperature getMarsTemperature(@RequestParam(value = "sol", defaultValue = "")
+                                                         String sol) throws JSONException {
         return new SolTemperature(marsWeatherService.getSolTemperature(sol));
     }
 
     @GetMapping("/earth/weather")
-    public WeatherDto getEarthTemperature(@RequestParam(value = "city", defaultValue = "") String city) {
+    public WeatherDto getEarthTemperature(@RequestParam(value = "city", defaultValue = "")
+                                                      String city) {
         return earthWeatherService.getCurrentWeather(city);
     }
 
@@ -54,12 +58,12 @@ public class AppController {
     }
 
     @GetMapping("/newCurrency")
-    public Double getNewCurrency(@RequestParam(value = "city", defaultValue = "") String city) {
+    public MAR getNewCurrency(@RequestParam(value = "city", defaultValue = "") String city) {
         return creationNewCurrencyService.getNewCurrency(city);
     }
 
-    @PostMapping("/TransferFacade")
-    public TransferDto makeTransfer(@RequestBody TransferDto transferDto,
+    @PostMapping("/TransferFacadeExchange")
+    public TransferResult makeTransfer(@RequestBody TransferDto transferDto,
                                     @RequestParam(value = "city", defaultValue = "") String city) {
         return transferFacade.makeExchange(transferDto, city);
     }

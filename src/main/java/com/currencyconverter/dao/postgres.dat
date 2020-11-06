@@ -1,0 +1,7 @@
+CREATE TABLE mar_currency (
+	char_code char(5) CONSTRAINT p_key PRIMARY KEY,
+    description text,
+    buy_calc real NOT NULL,
+	sell_calc real NOT NULL,
+	date date
+)

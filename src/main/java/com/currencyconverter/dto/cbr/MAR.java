@@ -1,118 +1,46 @@
 
 package com.currencyconverter.dto.cbr;
 
-import com.fasterxml.jackson.annotation.*;
+import com.currencyconverter.dto.CurrencyCode;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Date;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "ID",
-    "NumCode",
-    "CharCode",
-    "Nominal",
-    "Name",
-    "Value",
-    "Previous"
-})
 public class MAR {
 
-    @JsonProperty("ID")
-    private String iD;
-    @JsonProperty("NumCode")
-    private String numCode;
-    @JsonProperty("CharCode")
-    private String charCode;
-    @JsonProperty("Nominal")
-    private Integer nominal;
-    @JsonProperty("Name")
-    private String name;
-    @JsonProperty("Value")
-    private Double value;
-    @JsonProperty("Previous")
-    private Double previous;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private CurrencyCode charCode;
+    private Double buy_calc;
+    private Double sell_calc;
+    private Date date;
 
-    @JsonProperty("ID")
-    public String getID() {
-        return iD;
-    }
-
-    @JsonProperty("ID")
-    public void setID(String iD) {
-        this.iD = iD;
-    }
-
-    @JsonProperty("NumCode")
-    public String getNumCode() {
-        return numCode;
-    }
-
-    @JsonProperty("NumCode")
-    public void setNumCode(String numCode) {
-        this.numCode = numCode;
-    }
-
-    @JsonProperty("CharCode")
-    public String getCharCode() {
+    public CurrencyCode getCharCode() {
         return charCode;
     }
 
-    @JsonProperty("CharCode")
-    public void setCharCode(String charCode) {
+    public void setCharCode(CurrencyCode charCode) {
         this.charCode = charCode;
     }
 
-    @JsonProperty("Nominal")
-    public Integer getNominal() {
-        return nominal;
+    public Double getBuy_calc() {
+        return buy_calc;
     }
 
-    @JsonProperty("Nominal")
-    public void setNominal(Integer nominal) {
-        this.nominal = nominal;
+    public void setBuy_calc(Double buy_calc) {
+        this.buy_calc = buy_calc;
     }
 
-    @JsonProperty("Name")
-    public String getName() {
-        return name;
+    public Double getSell_calc() {
+        return sell_calc;
     }
 
-    @JsonProperty("Name")
-    public void setName(String name) {
-        this.name = name;
+    public void setSell_calc(Double sell_calc) {
+        this.sell_calc = sell_calc;
     }
 
-    @JsonProperty("Value")
-    public Double getValue() {
-        return value;
+    public Date getDate() {
+        return date;
     }
 
-    @JsonProperty("Value")
-    public void setValue(Double value) {
-        this.value = value;
+    public void setDate(Date date) {
+        this.date = date;
     }
-
-    @JsonProperty("Previous")
-    public Double getPrevious() {
-        return previous;
-    }
-
-    @JsonProperty("Previous")
-    public void setPrevious(Double previous) {
-        this.previous = previous;
-    }
-
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
 }
