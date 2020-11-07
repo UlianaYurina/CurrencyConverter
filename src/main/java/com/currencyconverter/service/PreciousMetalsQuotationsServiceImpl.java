@@ -19,8 +19,8 @@ public class PreciousMetalsQuotationsServiceImpl implements PreciousMetalsQuotat
         HttpEntity entity = new HttpEntity(httpHeaders);
 
         ResponseEntity<PrecForMet> exchangeRateForMet =
-                restTemplate.exchange("https://metals-api.com/api/latest?" +
-                                "access_key=4jzakw1p8152zn1eu3njcfb94mv80ed24q0d0ttuemrbe92cy0fo5498d1fm",
+                restTemplate.exchange("https://metals-api.com/api/latest?%20access_key=" +
+                                "7pr699z7hga4ic7i61cpkidv3bjvgj7ikro09dnp726wnzu0nkh90d6kxqrh",
                         HttpMethod.GET, entity, PrecForMet.class, 1);
 
         PrecForMet rateBody = exchangeRateForMet.getBody();
