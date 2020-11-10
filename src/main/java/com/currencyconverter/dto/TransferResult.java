@@ -2,27 +2,27 @@ package com.currencyconverter.dto;
 
 public class TransferResult {
 
-    private CurrencyCode currencyCodeSender;
-    private CurrencyCode currencyCodeReceiver;
+//    private CurrencyCode currencyCodeSender;
+//    private CurrencyCode currencyCodeReceiver;
     private Double transferAmountInCurrencySender;
     private Double transferAmountInCurrencyReceiver;
     private Double transferFeeInCurrencySender;
 
-    public CurrencyCode getCurrencyCodeSender() {
-        return currencyCodeSender;
-    }
+//    public CurrencyCode getCurrencyCodeSender() {
+//        return currencyCodeSender;
+//    }
 
-    public void setCurrencyCodeSender(CurrencyCode currencyCodeSender) {
-        this.currencyCodeSender = currencyCodeSender;
-    }
+//    public void setCurrencyCodeSender(CurrencyCode currencyCodeSender) {
+//        this.currencyCodeSender = currencyCodeSender;
+//    }
 
-    public CurrencyCode getCurrencyCodeReceiver() {
-        return currencyCodeReceiver;
-    }
+//    public CurrencyCode getCurrencyCodeReceiver() {
+//        return currencyCodeReceiver;
+//    }
 
-    public void setCurrencyCodeReceiver(CurrencyCode currencyCodeReceiver) {
-        this.currencyCodeReceiver = currencyCodeReceiver;
-    }
+//    public void setCurrencyCodeReceiver(CurrencyCode currencyCodeReceiver) {
+//        this.currencyCodeReceiver = currencyCodeReceiver;
+//    }
 
     public Double getTransferAmountInCurrencySender() {
         return transferAmountInCurrencySender;

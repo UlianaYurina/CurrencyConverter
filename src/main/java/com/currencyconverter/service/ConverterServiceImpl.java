@@ -71,8 +71,8 @@ public class ConverterServiceImpl implements ConverterService {
 
         TransferResult transferResult = new TransferResult();
 
-        transferResult.setCurrencyCodeSender(transferDto.getCurrencyCodeSender());
-        transferResult.setCurrencyCodeReceiver(transferDto.getCurrencyCodeReceiver());
+//        transferResult.setCurrencyCodeSender(transferDto.getCurrencyCodeSender());
+//        transferResult.setCurrencyCodeReceiver(transferDto.getCurrencyCodeReceiver());
         transferResult.setTransferAmountInCurrencySender(transferDto.getTransferAmountInCurrencySender());
         transferResult.setTransferAmountInCurrencyReceiver(priceInCurSenderFor1Rub / priceInCurReceiverFor1Rub
                                                             * transferDto.getTransferAmountInCurrencySender());
