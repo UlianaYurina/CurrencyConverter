@@ -1,6 +1,6 @@
 package com.currencyconverter.service;
 
-import com.currencyconverter.dto.cbrPreciousMetalsJson.PrecForMet;
+import com.currencyconverter.dto.cbr.metals.json.PrecForMet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;

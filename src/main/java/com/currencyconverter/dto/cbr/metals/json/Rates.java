@@ -1,5 +1,5 @@
 
-package com.currencyconverter.dto.cbrPreciousMetalsJson;
+package com.currencyconverter.dto.cbr.metals.json;
 
 import java.util.HashMap;
 import java.util.Map;

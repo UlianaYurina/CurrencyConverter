@@ -1,4 +1,4 @@
-package com.currencyconverter.dto.cbrPreciousMetalsXml;
+package com.currencyconverter.dto.cbr.metals.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
