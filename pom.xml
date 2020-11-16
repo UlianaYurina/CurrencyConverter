@@ -8,8 +8,8 @@
         <version>2.3.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.CurrencyConverter</groupId>
-    <artifactId>currencyConverter</artifactId>
+    <groupId>com.currencyconverter</groupId>
+    <artifactId>currencyconverter</artifactId>
     <version>1.0</version>
     <name>currencyConverter</name>
     <description>Demo project for Spring Boot</description>
@@ -34,6 +34,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
+            <version>3.0.3</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
@@ -98,6 +104,10 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
         </dependency>
+
+
+
+
     </dependencies>
 
     <build>
