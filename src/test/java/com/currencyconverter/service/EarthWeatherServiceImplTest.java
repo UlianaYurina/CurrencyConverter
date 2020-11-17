@@ -19,8 +19,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class EarthWeatherServiceImplTest {
 
-    @Autowired
-    private WeatherDto subject;
 
     @Rule
     public WireMockRule wireMockRule = new WireMockRule(wireMockConfig().httpsPort(8089));
