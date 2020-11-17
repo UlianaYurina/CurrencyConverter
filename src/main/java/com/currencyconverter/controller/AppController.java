@@ -1,9 +1,7 @@
 package com.currencyconverter.controller;
 
-import com.currencyconverter.dto.CurrencyCode;
 import com.currencyconverter.dto.TransferDto;
 import com.currencyconverter.dto.TransferResult;
-import com.currencyconverter.dto.cbr.MAR;
 import com.currencyconverter.dto.earth.weather.WeatherDto;
 import com.currencyconverter.dto.mars.SolTemperature;
 import com.currencyconverter.facade.TransferFacade;
@@ -12,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.web.bind.annotation.*;
 
-
-//http://www.cbr.ru/scripts/xml_metall.asp?date_req1=20/10/2020&date_req2=01/11/2020
 @RestController
 public class AppController {
 
@@ -71,14 +67,5 @@ public class AppController {
                                     @RequestParam(value = "city", defaultValue = "") String city) {
         return transferFacade.makeExchange(transferDto, city);
     }
-//    @PostMapping("/transferFee")
-//    public Double getFee(@RequestParam(value = "codeSender", defaultValue = "") CurrencyCode codeSender,
-//                         @RequestParam(value = "city", defaultValue = "") String city) {
-//        return transferFeeInCurrencySender.getFeeInCurSender(codeSender, city);
-//    }
-
-
-
-
 
 }

@@ -14,7 +14,7 @@ import java.util.List;
 
 @Configuration
 public class RestTemplateConfig {
-    @Bean // бин возващающий REST TEMPLATE
+    @Bean
     public RestTemplate getRestTemplate() {
 
         RestTemplate restTemplate = new RestTemplate();

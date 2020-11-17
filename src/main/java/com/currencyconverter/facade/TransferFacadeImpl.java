@@ -3,7 +3,6 @@ package com.currencyconverter.facade;
 
 import com.currencyconverter.dto.TransferDto;
 import com.currencyconverter.dto.TransferResult;
-import com.currencyconverter.dto.cbr.MAR;
 import com.currencyconverter.service.ConverterService;
 import com.currencyconverter.service.CreationNewCurrencyService;
 import com.currencyconverter.service.TransferFeeInCurrencySender;

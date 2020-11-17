@@ -23,7 +23,6 @@ public class CreationNewCurrencyServiceImpl implements  CreationNewCurrencyServi
                 (5.5 * earthWeatherService.getCurrentWeather(city).getMain().getTemp()));
         mar.setBuy_calc(mar.getSell_calc()*0.9);
         mar.setDate(new Date());
-        System.out.println(mar);
 
         return mar.getBuy_calc();
     }

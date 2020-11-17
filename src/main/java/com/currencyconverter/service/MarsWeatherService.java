@@ -4,14 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 public class MarsWeatherService {
-    //https://api.nasa.gov/planetary/apod?api_key=qut9GuOWDGcxAEOw9z39kq6BgkuWo9i0eX7H8KFr
-//qut9GuOWDGcxAEOw9z39kq6BgkuWo9i0eX7H8KFr
     @Autowired
     private RestTemplate restTemplate;
 
