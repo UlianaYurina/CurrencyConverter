@@ -16,7 +16,6 @@ public class MarsWeatherService {
 
         JSONObject data = this.getInsight();
         JSONArray solKeys = data.getJSONArray("sol_keys");
-        System.out.println(solKeys);
 
         // Has a sol with this name
         if (this.hasSol(solName, solKeys))

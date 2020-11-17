@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TransferFeeInCurrencySenderImpl implements TransferFeeInCurrencySender {
 
-    private final Double feeInMar = 5.0;
+    private static final Double feeInMar = 5.0;
 
     @Autowired
     private CreationNewCurrencyService creationCreationNewCurrencyService;

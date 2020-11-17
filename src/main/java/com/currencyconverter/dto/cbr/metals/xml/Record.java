@@ -1,5 +1,7 @@
 package com.currencyconverter.dto.cbr.metals.xml;
 
+import lombok.Data;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -12,6 +14,7 @@ import javax.xml.bind.annotation.XmlType;
         "Code",
         "Date"
 })
+@Data
 public class Record {
 
         @XmlElement(name = "Sell")
@@ -23,46 +26,6 @@ public class Record {
         private String Code;
 
         private String Date;
-
-        public String getSell ()
-        {
-            return Sell;
-        }
-
-        public void setSell (String Sell)
-        {
-            this.Sell = Sell;
-        }
-
-        public String getBuy ()
-        {
-            return Buy;
-        }
-
-        public void setBuy (String Buy)
-        {
-            this.Buy = Buy;
-        }
-
-        public String getCode ()
-        {
-            return Code;
-        }
-
-        public void setCode (String Code)
-        {
-            this.Code = Code;
-        }
-
-        public String getDate ()
-        {
-            return Date;
-        }
-
-        public void setDate (String Date)
-        {
-            this.Date = Date;
-        }
 
         @Override
         public String toString()

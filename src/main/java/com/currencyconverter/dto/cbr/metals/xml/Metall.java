@@ -1,5 +1,7 @@
 package com.currencyconverter.dto.cbr.metals.xml;
 
+import lombok.Data;
+
 import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "metall")
@@ -8,8 +10,8 @@ import javax.xml.bind.annotation.*;
         "name",
         "FromDate",
         "ToDate"
-//        "Record"
 })
+@Data
 public class Metall {
 
     private String name;
@@ -20,46 +22,6 @@ public class Metall {
 
     @XmlElement(name="Record")
     private Record[] Record;
-
-    public String getName ()
-    {
-        return name;
-    }
-
-    public void setName (String name)
-    {
-        this.name = name;
-    }
-
-    public String getFromDate ()
-    {
-        return FromDate;
-    }
-
-    public void setFromDate (String FromDate)
-    {
-        this.FromDate = FromDate;
-    }
-
-    public String getToDate ()
-    {
-        return ToDate;
-    }
-
-    public void setToDate (String ToDate)
-    {
-        this.ToDate = ToDate;
-    }
-
-    public Record[] getRecord ()
-    {
-        return Record;
-    }
-
-    public void setRecord (Record[] Record)
-    {
-        this.Record = Record;
-    }
 
     @Override
     public String toString()

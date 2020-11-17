@@ -25,10 +25,8 @@ public class PreciousMetalsQuotationsServiceImpl implements PreciousMetalsQuotat
 
         PrecForMet rateBody = exchangeRateForMet.getBody();
 
-        Double rateGoldPriceRubForGramm = 1 / (rateBody.getRates().getXAU() * 31.1034768) *
+        return 1 / (rateBody.getRates().getXAU() * 31.1034768) *
                                             rateBody.getRates().getRUB();
-
-        return rateGoldPriceRubForGramm;
 
     }
 }
