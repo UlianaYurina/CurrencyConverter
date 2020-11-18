@@ -1,9 +1,7 @@
 package com.currencyconverter.controller;
 
-import com.currencyconverter.dto.CurrencyCode;
 import com.currencyconverter.dto.TransferDto;
 import com.currencyconverter.dto.TransferResult;
-import com.currencyconverter.dto.cbr.MAR;
 import com.currencyconverter.dto.earth.weather.WeatherDto;
 import com.currencyconverter.dto.mars.SolTemperature;
 import com.currencyconverter.facade.TransferFacade;

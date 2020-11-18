@@ -12,10 +12,11 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Objects;
+
 @Service
 @Slf4j
 public class ConverterServiceImpl implements ConverterService {
-
 
     @Autowired
     private RestTemplate restTemplate;
@@ -68,7 +69,6 @@ public class ConverterServiceImpl implements ConverterService {
             priceInCurReceiverFor1Rub = creationNewCurrencyService.getNewCurrency(city);
         }
 
-
         TransferResult transferResult = new TransferResult();
 
 //        transferResult.setCurrencyCodeSender(transferDto.getCurrencyCodeSender());
@@ -83,6 +83,7 @@ public class ConverterServiceImpl implements ConverterService {
     }
 
     public Double getRateForSender(CurrencyCode currencyCodeSender, String city) {
+
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity entity = new HttpEntity(httpHeaders);
@@ -96,19 +97,17 @@ public class ConverterServiceImpl implements ConverterService {
         double priceInCurMarFor1Rub = 1/creationNewCurrencyService.getNewCurrency(city);
 
         if (currencyCodeSender.equals(CurrencyCode.EUR)) {
-            priceInCurSenderFor1Rub = 1/rateBody.getValute().getEUR().getValue();
+            priceInCurSenderFor1Rub = 1/ Objects.requireNonNull(rateBody).getValute().getEUR().getValue();
         }
         if (currencyCodeSender.equals(CurrencyCode.USD)) {
-            priceInCurSenderFor1Rub = 1/rateBody.getValute().getUSD().getValue();
+            priceInCurSenderFor1Rub = 1/ Objects.requireNonNull(rateBody).getValute().getUSD().getValue();
         }
         if (currencyCodeSender.equals(CurrencyCode.GBP)) {
-            priceInCurSenderFor1Rub = 1/rateBody.getValute().getGBP().getValue();
+            priceInCurSenderFor1Rub = 1/ Objects.requireNonNull(rateBody).getValute().getGBP().getValue();
         }
 
         return priceInCurSenderFor1Rub / priceInCurMarFor1Rub;
     }
-
-
 
     public double getWeatherOnMars(String sol) {
         double marsTemperature = 0.0;

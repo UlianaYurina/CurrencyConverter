@@ -1,7 +1,7 @@
 package com.currencyconverter.service;
 
 import com.currencyconverter.dto.CurrencyCode;
-import com.currencyconverter.dto.cbr.MAR;
+import com.currencyconverter.dto.mars.valute.MAR;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +19,13 @@ public class CreationNewCurrencyServiceImpl implements  CreationNewCurrencyServi
     public Double getNewCurrency(String city) { // 1 MAR -- x RUB
         MAR mar = new MAR();
         mar.setCharCode(CurrencyCode.MAR);
-        mar.setSell_calc(preciousMetalsQuotationsService.getGoldPriceInRub() /
+        mar.setSellCalc(preciousMetalsQuotationsService.getGoldPriceInRub() /
                 (5.5 * earthWeatherService.getCurrentWeather(city).getMain().getTemp()));
-        mar.setBuy_calc(mar.getSell_calc()*0.9);
+        mar.setBuyCalc(mar.getSellCalc()*0.9);
         mar.setDate(new Date());
         System.out.println(mar);
 
-        return mar.getBuy_calc();
+        return mar.getBuyCalc();
     }
 
 }
