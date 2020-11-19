@@ -40,8 +40,8 @@ public class ConverterServiceImpl implements ConverterService {
 
         ExchangeRateDto rateBody = exchangeRate.getBody();
         
-        double priceInCurSenderFor1Rub = 0.0;
-        double priceInCurReceiverFor1Rub = 0.0;
+        double priceInCurSenderFor1Rub = 1.0;
+        double priceInCurReceiverFor1Rub = 1.0;
 
         if (transferDto.getCurrencyCodeSender().equals(CurrencyCode.EUR)) {
             priceInCurSenderFor1Rub = Objects.requireNonNull(rateBody).getValute().getEUR().getValue();
@@ -71,8 +71,8 @@ public class ConverterServiceImpl implements ConverterService {
 
         TransferResult transferResult = new TransferResult();
         transferResult.setTransferAmountInCurrencySender(transferDto.getTransferAmountInCurrencySender());
-        transferResult.setTransferAmountInCurrencyReceiver(priceInCurSenderFor1Rub / priceInCurReceiverFor1Rub
-                                                            * transferDto.getTransferAmountInCurrencySender());
+        transferResult.setTransferAmountInCurrencyReceiver((priceInCurSenderFor1Rub / priceInCurReceiverFor1Rub)
+                * transferDto.getTransferAmountInCurrencySender());
         transferResult.setTransferFeeInCurrencySender(transferFeeInCurrencySender
                 .getFeeInCurSender(transferDto.getCurrencyCodeSender(), city));
 
@@ -90,7 +90,7 @@ public class ConverterServiceImpl implements ConverterService {
                         HttpMethod.GET, entity, ExchangeRateDto.class, 1);
 
         ExchangeRateDto rateBody = exchangeRate.getBody();
-        double priceInCurSenderFor1Rub = 0.0;
+        double priceInCurSenderFor1Rub = 1.0;
         double priceInCurMarFor1Rub = 1/creationNewCurrencyService.getNewCurrency(city);
 
         if (currencyCodeSender.equals(CurrencyCode.EUR)) {
