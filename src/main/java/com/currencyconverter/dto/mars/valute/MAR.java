@@ -1,5 +1,5 @@
 
-package com.currencyconverter.dto.cbr;
+package com.currencyconverter.dto.mars.valute;
 
 import com.currencyconverter.dto.CurrencyCode;
 import lombok.Data;
@@ -10,8 +10,7 @@ import java.util.Date;
 public class MAR {
 
     private CurrencyCode charCode;
-    private Double buy_calc;
-    private Double sell_calc;
+    private Double buyCalc;
+    private Double sellCalc;
     private Date date;
-
 }

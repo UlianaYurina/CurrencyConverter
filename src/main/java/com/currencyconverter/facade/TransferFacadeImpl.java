@@ -25,7 +25,6 @@ public class TransferFacadeImpl implements TransferFacade {
     }
 
     public TransferResult makeExchange(TransferDto transferDto, String city) {
-
         return converterService.getExchangeRate(transferDto, city);
     }
 }
