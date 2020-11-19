@@ -6,6 +6,8 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Objects;
+
 @Service
 public class PreciousMetalsQuotationsServiceImpl implements PreciousMetalsQuotationsService {
 
@@ -25,7 +27,7 @@ public class PreciousMetalsQuotationsServiceImpl implements PreciousMetalsQuotat
 
         PrecForMet rateBody = exchangeRateForMet.getBody();
 
-        return 1 / (rateBody.getRates().getXAU() * 31.1034768) *
+        return 1 / (Objects.requireNonNull(rateBody).getRates().getXAU() * 31.1034768) *
                                             rateBody.getRates().getRUB();
 
     }

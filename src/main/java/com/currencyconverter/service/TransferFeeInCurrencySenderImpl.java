@@ -10,9 +10,6 @@ public class TransferFeeInCurrencySenderImpl implements TransferFeeInCurrencySen
     private static final Double feeInMar = 5.0;
 
     @Autowired
-    private CreationNewCurrencyService creationCreationNewCurrencyService;
-
-    @Autowired
     private ConverterService converterService;
 
     public Double getFeeInCurSender(CurrencyCode codeSender, String city) {

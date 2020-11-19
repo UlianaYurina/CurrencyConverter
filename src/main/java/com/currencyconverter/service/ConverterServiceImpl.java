@@ -44,26 +44,26 @@ public class ConverterServiceImpl implements ConverterService {
         double priceInCurReceiverFor1Rub = 0.0;
 
         if (transferDto.getCurrencyCodeSender().equals(CurrencyCode.EUR)) {
-            priceInCurSenderFor1Rub = rateBody.getValute().getEUR().getValue();
+            priceInCurSenderFor1Rub = Objects.requireNonNull(rateBody).getValute().getEUR().getValue();
         }
         if (transferDto.getCurrencyCodeSender().equals(CurrencyCode.USD)) {
-            priceInCurSenderFor1Rub = rateBody.getValute().getUSD().getValue();
+            priceInCurSenderFor1Rub = Objects.requireNonNull(rateBody).getValute().getUSD().getValue();
         }
         if (transferDto.getCurrencyCodeSender().equals(CurrencyCode.GBP)) {
-            priceInCurSenderFor1Rub = rateBody.getValute().getGBP().getValue();
+            priceInCurSenderFor1Rub = Objects.requireNonNull(rateBody).getValute().getGBP().getValue();
         }
         if (transferDto.getCurrencyCodeSender().equals(CurrencyCode.MAR)) {
             priceInCurSenderFor1Rub = creationNewCurrencyService.getNewCurrency(city);
         }
 
         if (transferDto.getCurrencyCodeReceiver().equals(CurrencyCode.EUR)) {
-            priceInCurReceiverFor1Rub = rateBody.getValute().getEUR().getValue();
+            priceInCurReceiverFor1Rub = Objects.requireNonNull(rateBody).getValute().getEUR().getValue();
         }
         if (transferDto.getCurrencyCodeReceiver().equals(CurrencyCode.USD)) {
-            priceInCurReceiverFor1Rub = rateBody.getValute().getUSD().getValue();
+            priceInCurReceiverFor1Rub = Objects.requireNonNull(rateBody).getValute().getUSD().getValue();
         }
         if (transferDto.getCurrencyCodeReceiver().equals(CurrencyCode.GBP)) {
-            priceInCurReceiverFor1Rub = rateBody.getValute().getGBP().getValue();
+            priceInCurReceiverFor1Rub = Objects.requireNonNull(rateBody).getValute().getGBP().getValue();
         }
         if (transferDto.getCurrencyCodeReceiver().equals(CurrencyCode.MAR)) {
             priceInCurReceiverFor1Rub = creationNewCurrencyService.getNewCurrency(city);
